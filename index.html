@@ -1,0 +1,259 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#103d30">
+<title>نور لقلبك 🌙</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  background: #f7f4e9;
+  color: #173e30;
+  text-align: center;
+}
+
+header {
+  background: #103d30;
+  color: #f1d58a;
+  padding: 30px 15px;
+  border-bottom: 4px solid #c9a64d;
+}
+
+header .moon { font-size: 38px; }
+
+h1 { margin: 10px 0; font-size: 32px; }
+
+header p { color: #f6eed8; }
+
+main {
+  width: min(92%, 520px);
+  margin: 24px auto;
+}
+
+.card {
+  background: white;
+  padding: 22px;
+  margin-bottom: 18px;
+  border: 1px solid #e2d3a7;
+  border-radius: 18px;
+  box-shadow: 0 5px 16px #173e3010;
+}
+
+h2 { color: #176044; font-size: 21px; }
+
+button {
+  background: #176044;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 13px 18px;
+  margin: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:active { transform: scale(.97); }
+
+.gold {
+  color: #a47b20;
+  font-size: 19px;
+  line-height: 1.9;
+}
+
+#count {
+  font-size: 42px;
+  color: #b18b31;
+  margin: 12px;
+}
+
+.task {
+  display: block;
+  text-align: right;
+  padding: 10px;
+  line-height: 1.8;
+}
+
+.task input {
+  accent-color: #176044;
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+}
+
+footer {
+  background: #103d30;
+  color: #f1d58a;
+  padding: 22px;
+  line-height: 2;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="moon">☾ ✦</div>
+  <h1>نور لقلبك</h1>
+  <p>خطوة صغيرة تقرّبك من ربنا 🤍</p>
+</header>
+
+<main>
+
+  <section class="card">
+    <h2>💌 رسالة لقلبك</h2>
+    <p id="message" class="gold">
+      خدي نفسًا هاديًا، وابدئي يومك بذكر الله.
+    </p>
+    <button onclick="newMessage()">
+      محتاجة رسالة تانية ✨
+    </button>
+    <button onclick="shareMessage()">
+      ابعتي النور لصاحبتك 💌
+    </button>
+  </section>
+
+  <section class="card">
+    <h2>📿 سبحتك الإلكترونية</h2>
+    <p>سبّحي ربنا على مهلك</p>
+    <div id="count">0</div>
+    <button onclick="tasbeeh()">سبّحي 🤍</button>
+    <button onclick="resetCount()">تصفير العداد</button>
+  </section>
+
+  <section class="card">
+    <h2>🌿 أذكار بسيطة</h2>
+    <p class="gold">سبحان الله</p>
+    <p class="gold">الحمد لله</p>
+    <p class="gold">الله أكبر</p>
+    <p class="gold">أستغفر الله وأتوب إليه</p>
+    <p>خدي وقتك في الذكر من غير استعجال.</p>
+  </section>
+
+  <section class="card">
+    <h2>🌷 أعمال خير النهارده</h2>
+    <label class="task">
+      <input type="checkbox" data-task="prayer">
+      المحافظة على الصلاة
+    </label>
+    <label class="task">
+      <input type="checkbox" data-task="quran">
+      قراءة شيء من القرآن
+    </label>
+    <label class="task">
+      <input type="checkbox" data-task="kindness">
+      كلمة طيبة أو مساعدة حد
+    </label>
+    <label class="task">
+      <input type="checkbox" data-task="dua">
+      الدعاء لنفسي ولأهلي
+    </label>
+    <p id="progress">أنجزي اللي تقدري عليه النهارده 🤍</p>
+  </section>
+
+</main>
+
+<footer>
+  <div>✦ اللهم اجعل هذا العمل نافعًا ✦</div>
+  <small>نور لقلبك • مساحة للخير والطمأنينة</small>
+</footer>
+
+<script>
+const messages = [
+  "مهما كان يومك صعب، افتكري إن باب الدعاء مفتوح.",
+  "ابدئي من جديد، مش لازم تكوني مثالية عشان تتقربي من ربنا.",
+  "الصلاة مش عبء، دي فرصة تقفي فيها بين إيدين ربنا.",
+  "اعملي خيرًا صغيرًا، يمكن يكون كبيرًا عند الله.",
+  "استغفري، وادعي، وخدي بالأسباب، وسيبي أمرك لله.",
+  "خلي ليكي ورد من القرآن ولو آيات قليلة كل يوم.",
+  "ما تستنيش تبقي أحسن عشان تبدئي؛ ابدئي عشان تتحسني."
+];
+
+function newMessage() {
+  const current = document.getElementById("message").textContent;
+  let choices = messages.filter(m => m !== current);
+  const next = choices[Math.floor(Math.random() * choices.length)];
+  document.getElementById("message").textContent = next;
+}
+
+let count = 0;
+
+try {
+  count = Number(localStorage.getItem("noor-count")) || 0;
+} catch (e) {}
+
+document.getElementById("count").textContent = count;
+
+function tasbeeh() {
+  count++;
+  document.getElementById("count").textContent = count;
+  try {
+    localStorage.setItem("noor-count", count);
+  } catch (e) {}
+}
+
+function resetCount() {
+  if (confirm("متأكدة إنك عايزة تصفّري العداد؟")) {
+    count = 0;
+    document.getElementById("count").textContent = count;
+    try {
+      localStorage.setItem("noor-count", 0);
+    } catch (e) {}
+  }
+}
+
+async function shareMessage() {
+  const text = document.getElementById("message").textContent
+    + "\n\nرسالة من موقع نور لقلبك 🌿";
+
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: "نور لقلبك", text });
+    } catch (e) {}
+  } else {
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("تم نسخ الرسالة، تقدري تبعتيها لصاحبتك 🤍");
+    } catch (e) {
+      prompt("انسخي الرسالة دي وابعتيها:", text);
+    }
+  }
+}
+
+const tasks = document.querySelectorAll("[data-task]");
+
+tasks.forEach(task => {
+  try {
+    task.checked =
+      localStorage.getItem("noor-task-" + task.dataset.task) === "true";
+  } catch (e) {}
+
+  task.addEventListener("change", () => {
+    try {
+      localStorage.setItem(
+        "noor-task-" + task.dataset.task,
+        task.checked
+      );
+    } catch (e) {}
+    updateProgress();
+  });
+});
+
+function updateProgress() {
+  const done = [...tasks].filter(task => task.checked).length;
+  document.getElementById("progress").textContent =
+    done === 4
+      ? "ما شاء الله، أنجزتي كل المهام اللي اخترتيها اليوم 🌷"
+      : `أنجزتي ${done} من 4 مهام. كمّلي على قد استطاعتك 🤍`;
+}
+
+updateProgress();
+</script>
+
+</body>
+</html>
